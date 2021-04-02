@@ -29,7 +29,7 @@ if st.button('Submit'):
     
     plt.figure(figsize=(16,8))    
     plt.plot(stock_price, linewidth= 0.8, color='green')
-    plt.fill_between(stock_price.index, stock_price, color='g', alpha=0.1)
+    plt.fill_between(stock_price.index, stock_price, color='g', alpha=0.4)
     plt.ylim(0)
     plt.grid(True)
     st.pyplot()
@@ -54,10 +54,10 @@ if st.button('Submit'):
     st.write('')
     
     data_processed = [i for i in returns if i!=0]
-    sns.displot(data=data_processed, kde=True, bins=80, color='green', alpha=0.2, height=6, aspect=2)
+    sns.displot(data=data_processed, kde=True, bins=80, color='green', alpha=0.4, height=6, aspect=2)
     st.pyplot()
     with st.beta_expander("See explanation"):
-        st.write("""This chart shows the distribution of the fluctuations of the stock price. If most of the negative fluctuations are concentrated between 0 and -0.1, it's a good thing. It means that, statistically, when the stock price is drecreasing, it won't decrease by much. """)
+        st.write("""This chart shows the distribution of the fluctuations of the stock price. If most of the negative fluctuations are concentrated between 0 and -0.1, it's a good thing. It means that, statistically, when the stock price is drecreasing, it won't decrease by much. Also, note that I removed all non-changes (zeroes). """)
     st.write('')
 
     
@@ -65,7 +65,7 @@ if st.button('Submit'):
     plt.figure(figsize=(12,6))
     plt.title('Drawdown')
     drawdown['Drawdown'].plot(color='red', linewidth= 0.8,).autoscale(axis='x', tight=True)
-    plt.fill_between(drawdown.index, drawdown['Drawdown'],color='r', alpha=0.3)
+    plt.fill_between(drawdown.index, drawdown['Drawdown'],color='r', alpha=0.4)
     plt.grid(True)
     st.pyplot()
     with st.beta_expander("See explanation"):
@@ -74,7 +74,7 @@ if st.button('Submit'):
 
     wealth_index = 1000*(1+returns).cumprod()
     plt.plot(wealth_index, linewidth= 0.8,  color='green')
-    plt.fill_between(wealth_index.index, wealth_index, color='g',alpha=0.1)
+    plt.fill_between(wealth_index.index, wealth_index, color='g',alpha=0.4)
     plt.ylim(0)
     plt.grid(True)
     st.pyplot()
